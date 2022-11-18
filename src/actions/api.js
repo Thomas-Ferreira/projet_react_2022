@@ -17,3 +17,16 @@ export const getOneServant = (param) => dispatch => {
         dispatch({ type: API_ERROR, error: error })
       })
   }
+
+  export const getOneServantWithLore = (param) => dispatch => {
+    axios({
+      method: 'GET',
+      url: `https://api.atlasacademy.io/nice/NA/svt/${param}`,
+    })
+      .then(response => {
+        dispatch({ type: API_SUCCESS, response: response })
+      })
+      .catch(error => {
+        dispatch({ type: API_ERROR, error: error })
+      })
+  }
