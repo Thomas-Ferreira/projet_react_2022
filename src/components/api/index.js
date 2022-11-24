@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import allTheActions from '../../actions'
 import ReactECharts from 'echarts-for-react'
+import ImageAscension from '../imageAscension';
 
 const Api = (props) => {
 
@@ -10,12 +11,13 @@ const Api = (props) => {
         state.api.response.data ? state.api.response.data : [])
     const apiError = useSelector(state => state.api.error)
 
+    const [ascension, setAscension] = useState([])
+
     useEffect(() => {
       dispatch(allTheActions.api.getOneServantWithLore(props.id))
-      console.log(apiResponse);
+      //console.log(apiResponse);
+      setAscension(apiResponse.extraAssets.charaGraph.ascension)
   }, [])
-
-    console.log(apiResponse);
 
     const option = {
       grid: { top: 8, right: 8, bottom: 24, left: 36 },
@@ -44,7 +46,10 @@ const Api = (props) => {
     };
 
     return (
-        <ReactECharts option={option}/>
+        <>
+        <ImageAscension data={ascension}></ImageAscension>
+        <ReactECharts option={option} />
+        </>
     );
 };
 
