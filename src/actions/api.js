@@ -5,10 +5,10 @@ export const API_ERROR = 'API_ERROR'
 export const API_SUCCESS_SEARCH = 'API_SUCCESS_SEARCH'
 
 // Thunk function
-export const getOneServant = (param) => dispatch => {
+export const getAllServants = () => dispatch => {
     axios({
       method: 'GET',
-      url: `https://api.atlasacademy.io/basic/NA/svt/`+ param,
+      url: `https://api.atlasacademy.io/export/NA/basic_servant.json`,
     })
       .then(response => {
         dispatch({ type: API_SUCCESS, response: response })
