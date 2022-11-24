@@ -1,8 +1,7 @@
 import React from 'react'
 import { createBrowserRouter } from "react-router-dom";
-import Header from '../components/header';
-import Api from '../reducers/api';
 import Home from '../screen/home';
+import Single from '../screen/single';
 
 const router = createBrowserRouter([
     {
@@ -10,8 +9,8 @@ const router = createBrowserRouter([
       element: <Home />
     },
     {
-      path: "/api",
-      element: <Api />
+      path: "/:id",
+      element: <Single />
     }
   ]);
 
