@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import allTheActions from '../../actions'
 import styled from 'styled-components'
+import ListeRow from '../listeRow';
 
 const Liste = () => {
 
@@ -16,16 +17,13 @@ const Liste = () => {
         console.log(apiResponse);
     }, [])
 
+    console.log(apiResponse);
+
     return (
         <ContainAll>
-            {apiResponse.map(item =>(
-                <ContainerColumn>
-                    <img src={item.face}></img>
-                    <div>{item.name}</div>
-                    <div>{item.rarity}</div>
-                    <div>{item.id}</div>
-                </ContainerColumn>
-            ))}
+            {apiResponse.map(item =>{
+                return <ListeRow name={item.name} face={item.face} id={item.collectionNo} rarity={item.rarity} ></ListeRow>;
+            })}
         </ContainAll>
     );
 };
