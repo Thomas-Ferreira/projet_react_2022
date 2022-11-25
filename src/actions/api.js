@@ -11,7 +11,7 @@ export const getAllServants = () => dispatch => {
       url: `https://api.atlasacademy.io/export/NA/basic_servant.json`,
     })
       .then(response => {
-        dispatch({ type: API_SUCCESS, response: response })
+        dispatch({ type: API_SUCCESS, payload: {response, label: 'response'} })
       })
       .catch(error => {
         dispatch({ type: API_ERROR, error: error })
@@ -21,10 +21,10 @@ export const getAllServants = () => dispatch => {
   export const getOneServantWithLore = (param) => dispatch => {
     axios({
       method: 'GET',
-      url: `https://api.atlasacademy.io/nice/NA/svt/${param}`,
+      url: `https://api.atlasacademy.io/nice/NA/svt/${param}?lore=true`,
     })
       .then(response => {
-        dispatch({ type: API_SUCCESS, response: response })
+        dispatch({ type: API_SUCCESS, payload: {response, label: 'oneServant'} })
       })
       .catch(error => {
         dispatch({ type: API_ERROR, error: error })

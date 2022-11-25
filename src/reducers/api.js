@@ -1,7 +1,8 @@
 import { API_SUCCESS, API_ERROR, API_SUCCESS_SEARCH } from '../actions/api'
 
 const initialState = {
-  response: {}
+  response: [],
+  oneServant: {}
 }
 
 export default (state = initialState, action) => {
@@ -9,7 +10,7 @@ export default (state = initialState, action) => {
     case API_SUCCESS:
       return {
         ...state,
-        response: { ...action.response }
+        [action.payload.label]: { ...action.payload.response }
       }
     case API_SUCCESS_SEARCH:
       return {

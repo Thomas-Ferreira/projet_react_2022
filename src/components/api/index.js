@@ -3,20 +3,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import allTheActions from '../../actions'
 import ReactECharts from 'echarts-for-react'
 import ImageAscension from '../imageAscension';
+import Description from '../description';
+import styled from 'styled-components';
 
 const Api = (props) => {
 
     const dispatch = useDispatch()
-    const apiResponse = useSelector(state =>
-        state.api.response.data ? state.api.response.data : [])
+    const apiResponse = useSelector(state => state.api.oneServant.data ? state.api.oneServant.data : [])
+    //console.log("🚀 ~ file: index.js ~ line 11 ~ Api ~ apiResponse", apiResponse)
     const apiError = useSelector(state => state.api.error)
-
-    const [ascension, setAscension] = useState([])
 
     useEffect(() => {
       dispatch(allTheActions.api.getOneServantWithLore(props.id))
-      //console.log(apiResponse);
-      setAscension(apiResponse.extraAssets.charaGraph.ascension)
   }, [])
 
     const option = {
@@ -47,10 +45,23 @@ const Api = (props) => {
 
     return (
         <>
-        <ImageAscension data={ascension}></ImageAscension>
+        <FirstLine>
+        <Description 
+        name ={apiResponse?.name} 
+        class ={apiResponse?.className} 
+        rarity ={apiResponse?.rarity} 
+        profile ={apiResponse?.profile?.comments}
+        />
+        <ImageAscension data={apiResponse.extraAssets?.charaGraph?.ascension} rarity={apiResponse?.rarity} />
+        </FirstLine>
         <ReactECharts option={option} />
         </>
     );
 };
 
 export default Api;
+
+const FirstLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
