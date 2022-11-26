@@ -10,7 +10,7 @@ const Api = (props) => {
 
     const dispatch = useDispatch()
     const apiResponse = useSelector(state => state.api.oneServant.data ? state.api.oneServant.data : [])
-    //console.log("🚀 ~ file: index.js ~ line 11 ~ Api ~ apiResponse", apiResponse)
+    //console.log("🚀 ~ file: index.js ~ line 11 ~ Api ~ apiResponse", apiResponse.extraAssets.charaGraph.ascension)
     const apiError = useSelector(state => state.api.error)
 
     useEffect(() => {
@@ -62,6 +62,11 @@ const Api = (props) => {
 export default Api;
 
 const FirstLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+  //display: flex;
+  //justify-content: space-between;
+
+  @media (min-width: 768px){
+    display: flex;
+    justify-content: space-between;
+  }
+`

@@ -5,22 +5,14 @@ import ButtonAscension from '../buttonAscension';
 const ImageAscension = (props) => {
 
     const [isImage, setIsImage] = useState(1)
-    //console.log(Object?.values(props?.data));
-    const [dataImage, setDataImage] = useState(props.data? Object.values(props.data) : [])
-
-    useEffect(() => {
-        setDataImage(props.data? Object.values(props.data) : [])
-    }, [])
-
-    console.log(dataImage);
 
     return (
         <div>
             <div>
-                {dataImage.map(item=>{
-                    console.log(item)
-                    return <ButtonAscension function={()=>setIsImage()} numero={1}></ButtonAscension>
-                })}
+            <ButtonAscension function={()=>setIsImage(1)} numero={1} />
+            <ButtonAscension function={()=>setIsImage(2)} numero={2} />
+            <ButtonAscension function={()=>setIsImage(3)} numero={3} />
+            <ButtonAscension function={()=>setIsImage(4)} numero={4} />
             </div>
             <div>
                 <img src={props?.data ? props?.data[isImage] : ''}></img>

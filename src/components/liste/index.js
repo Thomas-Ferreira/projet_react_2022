@@ -14,10 +14,7 @@ const Liste = () => {
 
     useEffect(() => {
         dispatch(allTheActions.api.getAllServants())
-        console.log(apiResponse);
     }, [])
-
-    console.log(apiResponse);
     
     return (
         <ContainAll>
