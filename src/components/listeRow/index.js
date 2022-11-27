@@ -2,17 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Avatar from '../avatar';
+import Rarity from '../rarity';
+import { motion, Variants } from "framer-motion";
 
 const ListeRow = React.memo(( {name, face, rarity, id}) => {
+
     return (
     <Link to={`/${id}`} >
-    <Row>
-        <AvatarContainer>
-          <Avatar image={face}></Avatar>
-        </AvatarContainer>
-        <Name>{name}</Name>
-        <span>{rarity}</span>
-    </Row>
+      <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+      <Row>
+          <AvatarContainer>
+            <Avatar image={face}></Avatar>
+          </AvatarContainer>
+          <Name>{name}</Name>
+          <Rarity nombre={rarity} />
+      </Row>
+      </motion.div>
     </Link>
     );
 });
@@ -29,29 +34,18 @@ const AvatarContainer = styled.div`
 `;
 
 const Row = styled.div`
-  margin: 15px;
+  padding: 10px;
+  margin: 7vh;
+  background: rgba(0, 0, 0, 0.4);
+  top: 10px;
+  right: 10px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content:space-between;
-  //width: 461px;
-  height: 156px;
-  //left: 355px;
-  //top: 936px;
 
-  background: #1a1b1f;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
-  border-style: solid;
-
-  transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-
 `;
 
 const Name = styled.span`
   color: #ffffff;
-`;
-
-const Rarity = styled.span`
-  margin-right: 12px;
-  margin-left: 12px;
 `;
