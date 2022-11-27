@@ -15,7 +15,7 @@ const ImageAscension = (props) => {
             <ButtonAscension function={()=>setIsImage(4)} numero={4} />
             </div>
             <div>
-                <img src={props?.data ? props?.data[isImage] : ''}></img>
+                <StyledImg src={props?.data ? props?.data[isImage] : ''}></StyledImg>
             </div>
         </div>
     );
@@ -23,6 +23,14 @@ const ImageAscension = (props) => {
 
 export default ImageAscension;
 
-const styledDiv = styled.div`
-
+const StyledImg = styled.img`
+    width: 50%;
+    height: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ @media (min-width: 768px){
+    width: 100%;
+    height: 100%;
+  }
 `;
