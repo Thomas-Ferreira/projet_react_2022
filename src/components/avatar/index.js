@@ -8,6 +8,10 @@ const Avatar = ({image}) => {
 export default Avatar;
 
 const Picture = styled.img`
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
+  width: 7vh;
+  height: 7vh;
+@media (min-width: 768px){
+  width: 10vh;
+  height: 10vh;
+}
 `;

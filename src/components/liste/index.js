@@ -33,9 +33,3 @@ const ContainAll = styled.div`
     background-repeat: no-repeat;
     background-size:cover;
 `
-
-const ContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`

@@ -8,8 +8,9 @@ import { motion, Variants } from "framer-motion";
 const ListeRow = React.memo(( {name, face, rarity, id}) => {
 
     return (
-    <Link to={`/${id}`} >
+      <DivSup>
       <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+      <Link to={`/${id}`} >
       <Row>
           <AvatarContainer>
             <Avatar image={face}></Avatar>
@@ -17,8 +18,9 @@ const ListeRow = React.memo(( {name, face, rarity, id}) => {
           <Name>{name}</Name>
           <Rarity nombre={rarity} />
       </Row>
+      </Link>
       </motion.div>
-    </Link>
+      </DivSup>
     );
 });
 
@@ -30,20 +32,32 @@ const AvatarContainer = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
-  border-right: solid ;
+`;
+
+const DivSup = styled.div`
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Row = styled.div`
-  padding: 10px;
-  margin: 7vh;
+  width: 40vh;
+  height: 15vh;
+  margin-top: 5vh ;
+  margin-bottom: 5vh;
   background: rgba(0, 0, 0, 0.4);
   top: 10px;
-  right: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   border-radius: 30px;
+  @media (min-width: 768px){
+    margin: 5vh;
+    width: 75vh;
+    padding: 10px;
+  }
 `;
 
 const Name = styled.span`
