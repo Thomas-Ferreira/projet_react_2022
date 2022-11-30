@@ -9,7 +9,7 @@ const ListeRow = React.memo(( {name, face, rarity, id}) => {
 
     return (
       <DivSup>
-      <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+      <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} >
       <Link to={`/${id}`} >
       <Row>
           <AvatarContainer>
