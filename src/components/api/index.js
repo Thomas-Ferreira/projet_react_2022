@@ -96,10 +96,8 @@ justify-content: center;
 
 const SecondLine = styled.div`
   display: flex;
-  flex-direction: column-reverse;
 
   @media (min-width: 768px){
-    justify-content: space-between;
-    flex-direction: row;
+    display: block;
   }
 `

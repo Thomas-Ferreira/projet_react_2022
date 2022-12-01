@@ -14,9 +14,9 @@ const Description = (props) => {
 export default Description
 
 const DivComment = styled.div`
-    
+    display: flex;
     @media (min-width: 768px) {
-        max-width: 650px;
+        display: block;
     }
 `
 

@@ -40,13 +40,23 @@ const DivComment = styled.div`
     font-size: 13px;
     color: #ffffff;
     text-align: justify;
+    @media (min-width: 768px){
+        font-size: 20px;
+    }
 `
 
 const Container = styled.div`
     display: flex;
     margin: 2vh;
+    @media (min-width: 768px) {
+        display: block;
+    }
 `
 
 const DivButton = styled.div`
     //display: flex;
+    @media (min-width: 768px){
+        justify-content: center;
+        display: flex;
+    }
 `
