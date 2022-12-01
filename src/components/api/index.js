@@ -10,7 +10,6 @@ const Api = (props) => {
 
     const dispatch = useDispatch()
     const apiResponse = useSelector(state => state.api.oneServant.data ? state.api.oneServant.data : [])
-    //console.log("🚀 ~ file: index.js ~ line 11 ~ Api ~ apiResponse", apiResponse.extraAssets.charaGraph.ascension)
     const apiError = useSelector(state => state.api.error)
 
     useEffect(() => {
@@ -20,8 +19,7 @@ const Api = (props) => {
     const option = {
       grid: { top: 8, right: 8, bottom: 24, left: 36 },
       xAxis: {
-        type: 'category',
-        data: apiResponse.level,
+        type: 'category'
       },
       yAxis: {
         type: 'value',

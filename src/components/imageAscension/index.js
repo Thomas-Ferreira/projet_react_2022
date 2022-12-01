@@ -9,10 +9,10 @@ const ImageAscension = (props) => {
     return (
         <div>
             <div>
-            <ButtonAscension function={()=>setIsImage(1)} numero={1} />
-            <ButtonAscension function={()=>setIsImage(2)} numero={2} />
-            <ButtonAscension function={()=>setIsImage(3)} numero={3} />
-            <ButtonAscension function={()=>setIsImage(4)} numero={4} />
+            <ButtonAscension function={()=>setIsImage(1)} numero={1} name={'Ascension'} />
+            <ButtonAscension function={()=>setIsImage(2)} numero={2} name={'Ascension'} />
+            <ButtonAscension function={()=>setIsImage(3)} numero={3} name={'Ascension'} />
+            <ButtonAscension function={()=>setIsImage(4)} numero={4} name={'Ascension'} />
             </div>
             <div>
                 <StyledImg src={props?.data ? props?.data[isImage] : ''}></StyledImg>

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ButtonAscension = (props) => {
-//console.log(props);
     return (
-        <CustomButton onClick={props.function}>ascension {props.numero}</CustomButton>
+        <CustomButton onClick={props.function}>{props.name} {props.numero}</CustomButton>
     )
 }
 
