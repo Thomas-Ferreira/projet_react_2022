@@ -4,13 +4,20 @@ import styled from 'styled-components';
 const Name = (props) => {
     return (
         <DivName>
-            <span>Name : {props.nom}</span>
-            <span>Class : {props.classe}</span>
+            <SyledH2>Name : {props.nom}</SyledH2>
+            <SyledH2>Class : {props.classe}</SyledH2>
         </DivName>
     );
 };
 
 export default Name;
+
+const SyledH2 = styled.h2`
+    font-size: 20px;
+    @media (min-width: 768px) {
+        font-size: 30px;
+    }
+`
 
 const DivName = styled.div`
 display: flex;

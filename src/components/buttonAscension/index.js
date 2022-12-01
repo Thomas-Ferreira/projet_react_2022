@@ -11,9 +11,12 @@ export default ButtonAscension
 
 const CustomButton = styled.button`
     text-decoration: none;
+    outline: none;
+    border: none;
     color: ${props => props.isFocused ? '#ffffff' : '#000000' };
     background-color: ${props => props.isFocused ? '#1f2557' : '#ffffff '} ; 
     font-size: 0.772em;
+    padding: 2vh;
     &:hover{
         background-color: #1f2557;
         color: #ffffff; 

@@ -3,13 +3,18 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Avatar from '../avatar';
 import Rarity from '../rarity';
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 const ListeRow = React.memo(( {name, face, rarity, id}) => {
 
     return (
       <DivSup>
-      <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} >
+      <motion.div 
+        whileHover={{ scale: 1.2 }} 
+        whileTap={{ scale: 1 }} 
+        initial={{ opacity: 0,}}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut"}} >
       <Link to={`/${id}`} >
       <Row>
           <AvatarContainer>

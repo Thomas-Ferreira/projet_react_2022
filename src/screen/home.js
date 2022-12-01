@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div>
             <GlobalStyle />
-            <Header></Header>
+            {/* <Header></Header> */}
             <Liste></Liste> 
         </div>
     );

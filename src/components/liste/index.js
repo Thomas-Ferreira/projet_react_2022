@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import allTheActions from '../../actions'
 import styled from 'styled-components'
 import ListeRow from '../listeRow';
+import { motion } from 'framer-motion';
 
 const Liste = () => {
 
@@ -19,7 +20,14 @@ const Liste = () => {
     return (
         <ContainAll>
             {apiResponse.map(item =>{
-                return <ListeRow name={item.name} face={item.face} rarity={item.rarity} id={item.id} ></ListeRow>;
+                return<> 
+                <motion.div
+                whileInView={{ x: 0 }}
+                initial={{ x: -300 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}>
+                <ListeRow name={item.name} face={item.face} rarity={item.rarity} id={item.id} ></ListeRow>
+                </motion.div>
+                </>
             })}
         </ContainAll>
     );

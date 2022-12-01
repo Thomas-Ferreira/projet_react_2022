@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ButtonAscension from '../buttonAscension';
 
@@ -12,7 +12,6 @@ const Comments = ({comments=[]}) => {
         setIsFocused(id)
     }
 
-
     return (
         <Container>
             <DivButton>
@@ -21,14 +20,27 @@ const Comments = ({comments=[]}) => {
                     return <ButtonAscension function={() => CommentSet(item.id, item.comment)} numero={item.id} name={'Comment'} isFocused={isFocused === item.id} />
                 })}
             </DivButton>
-            <div>
+            {currentComment ? <DivComment>
                 {currentComment}
-            </div>
+            </DivComment> :null}
         </Container>
     );
 };
 
 export default Comments;
+
+const DivComment = styled.div`
+    background-color: #1f2557;
+    margin: 2vh;
+    padding-right: 1vh;
+    padding-left: 1vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #ffffff;
+    text-align: justify;
+`
 
 const Container = styled.div`
     display: flex;

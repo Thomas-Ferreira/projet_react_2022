@@ -19,20 +19,35 @@ const Api = (props) => {
   }, [])
 
     const option = {
-      grid: { top: 8, right: 8, bottom: 24, left: 36 },
+      title: {
+        text: 'Stats ATK et PV'
+      },
+      legend: {
+        data:['ATK','PV']
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
       xAxis: {
-        type: 'category'
+        type: 'category',
+        boundaryGap : false,
       },
       yAxis: {
         type: 'value',
+        boundaryGap : false,
       },
       series: [
         {
+          name: 'ATK',
           data: apiResponse.atkGrowth,
           type: 'line',
           smooth: true,
         },
         {
+          name: 'PV',
           data:apiResponse.hpGrowth,
           type: 'line',
           smooth: true,
@@ -46,6 +61,8 @@ const Api = (props) => {
     return (
         <>
         <div>
+        <ImageAscension data={apiResponse.extraAssets?.charaGraph?.ascension} rarity={apiResponse?.rarity} />
+
           <Name nom={apiResponse?.name}  classe={apiResponse?.className} />
           <RarityDiv>
             <Rarity nombre={apiResponse?.rarity} />
@@ -55,14 +72,19 @@ const Api = (props) => {
         <Description   
         profile ={apiResponse?.profile?.comments}
         />
-        <ImageAscension data={apiResponse.extraAssets?.charaGraph?.ascension} rarity={apiResponse?.rarity} />
         </SecondLine>
-        <ReactECharts option={option} />
+        <DivCharts>
+        <ReactECharts option={option} style={{height: 400}} />
+        </DivCharts>
         </>
     );
 };
 
 export default Api;
+
+const DivCharts = styled.div`
+  margin : 2vh;
+`
 
 const RarityDiv =styled.div`
 display: flex;
