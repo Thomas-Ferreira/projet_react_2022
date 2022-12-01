@@ -1,25 +1,40 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import ButtonAscension from '../buttonAscension';
 
 const Comments = ({comments=[]}) => {
-    
-    const [currentComment, setCurrentComment ] = useState('')
 
-    console.log(comments);
+    const [currentComment, setCurrentComment ] = useState('')
+    const [isFocused, setIsFocused] = useState(1)
+
+    const CommentSet = (id, comment)=>{
+        setCurrentComment(comment)
+        setIsFocused(id)
+    }
+
 
     return (
-        <div>
-            <div>
+        <Container>
+            <DivButton>
                 {
                 comments.map(item=>{
-                    return <ButtonAscension function={() => setCurrentComment(item.comment)} numero={item.id} name={'Comment'} />
+                    return <ButtonAscension function={() => CommentSet(item.id, item.comment)} numero={item.id} name={'Comment'} isFocused={isFocused === item.id} />
                 })}
-            </div>
+            </DivButton>
             <div>
                 {currentComment}
             </div>
-        </div>
+        </Container>
     );
 };
 
 export default Comments;
+
+const Container = styled.div`
+    display: flex;
+    margin: 2vh;
+`
+
+const DivButton = styled.div`
+    //display: flex;
+`

@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import { IoStarSharp } from "react-icons/io5"
+import styled from 'styled-components';
 
 const Rarity = (props) => {
     return (
-        <div>
+        <DivRarity>
             {props.nombre} <IoStarSharp />
-        </div>
+        </DivRarity>
     );
 };
 
 export default Rarity;
+
+const DivRarity = styled.div`
+
+`

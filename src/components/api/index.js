@@ -5,6 +5,8 @@ import ReactECharts from 'echarts-for-react'
 import ImageAscension from '../imageAscension';
 import Description from '../description';
 import styled from 'styled-components';
+import Name from '../name';
+import Rarity from '../rarity';
 
 const Api = (props) => {
 
@@ -43,15 +45,18 @@ const Api = (props) => {
 
     return (
         <>
-        <FirstLine>
-        <Description 
-        name ={apiResponse?.name} 
-        class ={apiResponse?.className} 
-        rarity ={apiResponse?.rarity} 
+        <div>
+          <Name nom={apiResponse?.name}  classe={apiResponse?.className} />
+          <RarityDiv>
+            <Rarity nombre={apiResponse?.rarity} />
+          </RarityDiv>
+        </div>
+        <SecondLine>
+        <Description   
         profile ={apiResponse?.profile?.comments}
         />
         <ImageAscension data={apiResponse.extraAssets?.charaGraph?.ascension} rarity={apiResponse?.rarity} />
-        </FirstLine>
+        </SecondLine>
         <ReactECharts option={option} />
         </>
     );
@@ -59,12 +64,20 @@ const Api = (props) => {
 
 export default Api;
 
-const FirstLine = styled.div`
-  //display: flex;
-  //justify-content: space-between;
+const RarityDiv =styled.div`
+display: flex;
+justify-content: center;
+@media (min-width: 768px) {
+    
+}
+`
+
+const SecondLine = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
 
   @media (min-width: 768px){
-    display: flex;
     justify-content: space-between;
+    flex-direction: row;
   }
 `

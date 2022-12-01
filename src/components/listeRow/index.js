@@ -16,7 +16,9 @@ const ListeRow = React.memo(( {name, face, rarity, id}) => {
             <Avatar image={face}></Avatar>
           </AvatarContainer>
           <Name>{name}</Name>
+          <RarityDiv>
           <Rarity nombre={rarity} />
+          </RarityDiv>
       </Row>
       </Link>
       </motion.div>
@@ -25,6 +27,12 @@ const ListeRow = React.memo(( {name, face, rarity, id}) => {
 });
 
 export default ListeRow;
+
+const RarityDiv =styled.div`
+@media (min-width: 768px) {
+    
+}
+`
 
 const AvatarContainer = styled.div`
   margin-right: 12px;

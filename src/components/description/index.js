@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import { IoStarSharp } from "react-icons/io5"
+import styled from 'styled-components';
 import Comments from '../comments';
-import Rarity from '../rarity';
 
 const Description = (props) => {
-    
+
     const [isDesc, setIsDesc] = useState(0)
     
     return (
-        <div>
-            <div>
-                <span>{props.name}</span>
-                <span>{props.class}</span>
-                <Rarity nombre={props.rarity} />
-                <Comments comments={props?.profile} />
-            </div>
-            <div>
-                
-            </div>
-        </div>
+        <DivComment>
+            <Comments comments={props?.profile} />
+        </DivComment>
     );
 };
 
-export default Description;
+export default Description
+
+const DivComment = styled.div`
+
+    @media (min-width: 768px) {
+        max-width: 650px;
+    }
+`
+
