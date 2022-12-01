@@ -32,10 +32,18 @@ const ImageAscension = (props) => {
 export default ImageAscension;
 
 const Container = styled.div`
+@media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 `
 
 const DivImg = styled.div`
     background-color: #1f2557;
+    @media (min-width: 768px) {
+        display: contents;
+    }
 `
 
 const DivButton = styled.div`
@@ -48,7 +56,7 @@ const StyledImg = styled.img`
     width: 100%;
     height: 100%;
 @media (min-width: 768px){
-    width: 100%;
-    height: 100%;
+    width: 25%;
+    height: 25%;
   }
 `;
