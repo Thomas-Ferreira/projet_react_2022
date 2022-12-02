@@ -9,7 +9,6 @@ const Single = () => {
     return (
         <div>
             <GlobalStyle />
-            {/* <Header></Header> */}
             <Api id={id}></Api>
         </div>
     );

@@ -14,9 +14,7 @@ export default Header;
 const DivHeader = styled.header`
   margin-top: 0;
   width: 100%;
-  text-color: black;
   text-decoration: none;
-  //position: fixed;
   left: 0;
   top: 0;
   display: flex;

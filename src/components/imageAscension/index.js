@@ -56,7 +56,6 @@ const StyledImg = styled.img`
     width: 100%;
     height: 100%;
 @media (min-width: 768px){
-    width: 25%;
-    height: 25%;
+    width: 36%;
   }
 `;

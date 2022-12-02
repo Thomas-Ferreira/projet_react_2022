@@ -59,7 +59,8 @@ const Row = styled.div`
   height: 15vh;
   margin-top: 5vh ;
   margin-bottom: 5vh;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(9,10,36);
+  background: linear-gradient(270deg, rgba(9,10,36,1) 0%, rgba(31,37,80,1) 50%, rgba(0,16,133,1) 100%);
   top: 10px;
   display: flex;
   align-items: center;

@@ -60,19 +60,20 @@ const Api = (props) => {
 
     return (
         <>
-        <div>
-        <ImageAscension data={apiResponse.extraAssets?.charaGraph?.ascension} rarity={apiResponse?.rarity} />
-
+        <FirstLine>
+          <ImageAscension data={apiResponse.extraAssets?.charaGraph?.ascension} rarity={apiResponse?.rarity} />
           <Name nom={apiResponse?.name}  classe={apiResponse?.className} />
           <RarityDiv>
             <Rarity nombre={apiResponse?.rarity} />
           </RarityDiv>
-        </div>
+        </FirstLine>
+
         <SecondLine>
         <Description   
         profile ={apiResponse?.profile?.comments}
         />
         </SecondLine>
+        
         <DivCharts>
         <ReactECharts option={option} style={{height: 400}} />
         </DivCharts>
@@ -94,9 +95,14 @@ justify-content: center;
 }
 `
 
+const FirstLine = styled.div`
+margin-bottom: 2vh;
+`
+
 const SecondLine = styled.div`
   display: flex;
-
+  margin-top: 2vh;
+  margin-bottom: 3vh;
   @media (min-width: 768px){
     display: block;
   }

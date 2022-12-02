@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ButtonAscension from '../buttonAscension';
+import { motion } from 'framer-motion'
 
 const Comments = ({comments=[]}) => {
 
     const [currentComment, setCurrentComment ] = useState('')
-    const [isFocused, setIsFocused] = useState(1)
+    const [isFocused, setIsFocused] = useState(0)
 
     const CommentSet = (id, comment)=>{
         setCurrentComment(comment)
@@ -20,9 +21,14 @@ const Comments = ({comments=[]}) => {
                     return <ButtonAscension function={() => CommentSet(item.id, item.comment)} numero={item.id} name={'Comment'} isFocused={isFocused === item.id} />
                 })}
             </DivButton>
-            {currentComment ? <DivComment>
+            {currentComment ? 
+            <DivComment>
                 {currentComment}
-            </DivComment> :null}
+            </DivComment> 
+            :
+            <DivComment>
+            Some trivia and informations about this character
+            </DivComment>}
         </Container>
     );
 };
@@ -37,26 +43,29 @@ const DivComment = styled.div`
     padding-top: 5vh;
     padding-bottom: 5vh;
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 15px;
     color: #ffffff;
     text-align: justify;
     @media (min-width: 768px){
-        font-size: 20px;
+        font-size: 18px;
     }
 `
 
 const Container = styled.div`
     display: flex;
-    margin: 2vh;
+    background-color: #1f2557;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     @media (min-width: 768px) {
         display: block;
     }
 `
 
 const DivButton = styled.div`
-    //display: flex;
+    display: flex;
+    flex-direction: column;
     @media (min-width: 768px){
+        flex-direction: row;
         justify-content: center;
-        display: flex;
     }
 `
