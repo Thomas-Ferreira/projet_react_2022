@@ -15,7 +15,7 @@ const Liste = () => {
     const apiError = useSelector(state => state.api.error)
 
     const [page, setPage] = useState(0);
-    const itemsPerPage = 5;
+    const itemsPerPage = 50;
     const numberOfRecordsVistited = page * itemsPerPage;
 
     const totalPages = Math.ceil(apiResponse.length / itemsPerPage)
@@ -30,6 +30,13 @@ const Liste = () => {
     
     return (
         <ContainAll>
+             <MyPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={totalPages}
+                onPageChange={changePage}
+            />
+
             {apiResponse.slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
                 return<> 
                 <motion.div
@@ -40,7 +47,8 @@ const Liste = () => {
                 </motion.div>
                 </>
             })}
-            <ReactPaginate
+
+            <MyPaginate
                 previousLabel={"Previous"}
                 nextLabel={"Next"}
                 pageCount={totalPages}
@@ -50,7 +58,43 @@ const Liste = () => {
     );
 };
 
-export default Liste;
+export default Liste
+
+const MyPaginate = styled(ReactPaginate).attrs({
+    // You can redefine classes here, if you want.
+    activeClassName: 'active', // default to "selected"
+  })`
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0 5rem;
+    li a {
+      border-radius: 7px;
+      padding: 0.1rem 1rem;
+      border: gray 1px solid;
+      cursor: pointer;
+    }
+    li.previous a,
+    li.next a,
+    li.break a {
+      border-color: transparent;
+    }
+    li.active a {
+      background-color: #0366d6;
+      border-color: transparent;
+      color: white;
+      min-width: 32px;
+    }
+    li.disabled a {
+      color: grey;
+    }
+    li.disable,
+    li.disabled a {
+      cursor: default;
+    }
+  `;
 
 const ContainAll = styled.div`
     min-height:100vh;
