@@ -17,7 +17,7 @@ const Liste = () => {
     const [page, setPage] = useState(0);
     const itemsPerPage = 50;
     const numberOfRecordsVistited = page * itemsPerPage;
-    const [totalPages, setTotalPages] = useState(Math.ceil(apiResponse.length / itemsPerPage))
+    const totalPages = Math.ceil(apiResponse.length / itemsPerPage)
     const changePage = ({ selected }) => {
         setPage(selected);
       }
@@ -34,6 +34,7 @@ const Liste = () => {
     
     return (
         <ContainAll>
+            
             <input
                 type="search"
                 placeholder="Search here"
@@ -46,7 +47,12 @@ const Liste = () => {
              onPageChange={changePage}
              />
 
-            {apiResponse.filter(item =>  item.name.toLowerCase().includes(searchInput.toLowerCase())).slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
+            <motion.div
+            whileInView={{ x: 0 }}
+            initial={{ x: -300 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}>
+
+            {apiResponse.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase())).slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
                 return<> 
                 <motion.div
                 whileInView={{ x: 0 }}
@@ -57,10 +63,13 @@ const Liste = () => {
                 </>
             })}
 
+            </motion.div>
+
             <MyPaginate
              pageCount={totalPages}
              onPageChange={changePage}
             />
+            
         </ContainAll>
     );
 };
