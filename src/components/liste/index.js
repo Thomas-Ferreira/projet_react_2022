@@ -4,6 +4,7 @@ import allTheActions from '../../actions'
 import styled from 'styled-components'
 import ListeRow from '../listeRow';
 import { motion } from 'framer-motion';
+import ReactPaginate from 'react-paginate';
 
 const Liste = () => {
 
@@ -13,13 +14,23 @@ const Liste = () => {
     )
     const apiError = useSelector(state => state.api.error)
 
+    const [page, setPage] = useState(0);
+    const itemsPerPage = 5;
+    const numberOfRecordsVistited = page * itemsPerPage;
+
+    const totalPages = Math.ceil(apiResponse.length / itemsPerPage)
+
+    const changePage = ({ selected }) => {
+        setPage(selected);
+      }
+
     useEffect(() => {
         dispatch(allTheActions.api.getAllServants())
     }, [])
     
     return (
         <ContainAll>
-            {apiResponse.map(item =>{
+            {apiResponse.slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
                 return<> 
                 <motion.div
                 whileInView={{ x: 0 }}
@@ -29,6 +40,12 @@ const Liste = () => {
                 </motion.div>
                 </>
             })}
+            <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={totalPages}
+                onPageChange={changePage}
+            />
         </ContainAll>
     );
 };
