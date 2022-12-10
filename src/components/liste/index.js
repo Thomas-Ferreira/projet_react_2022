@@ -17,7 +17,7 @@ const Liste = () => {
     const [page, setPage] = useState(0);
     const itemsPerPage = 50;
     const numberOfRecordsVistited = page * itemsPerPage;
-    const totalPages = Math.ceil(apiResponse.length / itemsPerPage)
+    const [totalPages, setTotalPages] = useState(Math.ceil(apiResponse.length / itemsPerPage))
     const changePage = ({ selected }) => {
         setPage(selected);
       }
@@ -46,7 +46,7 @@ const Liste = () => {
              onPageChange={changePage}
              />
 
-            {apiResponse.filter(item=> item.name.toLowerCase().includes(searchInput.toLowerCase())).slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
+            {apiResponse.filter(item =>  item.name.toLowerCase().includes(searchInput.toLowerCase())).slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
                 return<> 
                 <motion.div
                 whileInView={{ x: 0 }}
