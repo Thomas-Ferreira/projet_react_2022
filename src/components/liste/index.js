@@ -17,12 +17,16 @@ const Liste = () => {
     const [page, setPage] = useState(0);
     const itemsPerPage = 50;
     const numberOfRecordsVistited = page * itemsPerPage;
-
     const totalPages = Math.ceil(apiResponse.length / itemsPerPage)
-
     const changePage = ({ selected }) => {
         setPage(selected);
       }
+
+    const [searchInput, setSearchInput] = useState("");
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value);
+    }
 
     useEffect(() => {
         dispatch(allTheActions.api.getAllServants())
@@ -30,14 +34,19 @@ const Liste = () => {
     
     return (
         <ContainAll>
-             <MyPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                pageCount={totalPages}
-                onPageChange={changePage}
+            <input
+                type="search"
+                placeholder="Search here"
+                onChange={handleChange}
+                value={searchInput} 
             />
 
-            {apiResponse.slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
+             <MyPaginate
+             pageCount={totalPages}
+             onPageChange={changePage}
+             />
+
+            {apiResponse.filter(item=> item.name.toLowerCase().includes(searchInput.toLowerCase())).slice(numberOfRecordsVistited, numberOfRecordsVistited + itemsPerPage).map(item =>{
                 return<> 
                 <motion.div
                 whileInView={{ x: 0 }}
@@ -49,10 +58,8 @@ const Liste = () => {
             })}
 
             <MyPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                pageCount={totalPages}
-                onPageChange={changePage}
+             pageCount={totalPages}
+             onPageChange={changePage}
             />
         </ContainAll>
     );
@@ -61,15 +68,22 @@ const Liste = () => {
 export default Liste
 
 const MyPaginate = styled(ReactPaginate).attrs({
-    // You can redefine classes here, if you want.
-    activeClassName: 'active', // default to "selected"
+    activeClassName: 'active',
+    previousLabel:'Previous',
+    nextLabel:"Next",
+    breakLabel:"...",
+    pageRangeDisplayed:0,
+    marginPagesDisplayed:0,
+
   })`
-    margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     list-style-type: none;
-    padding: 0 5rem;
+    padding: 0;
+    @media (min-width: 768px) {
+        justify-content: center;
+    }
     li a {
       border-radius: 7px;
       padding: 0.1rem 1rem;
@@ -85,7 +99,6 @@ const MyPaginate = styled(ReactPaginate).attrs({
       background-color: #0366d6;
       border-color: transparent;
       color: white;
-      min-width: 32px;
     }
     li.disabled a {
       color: grey;
