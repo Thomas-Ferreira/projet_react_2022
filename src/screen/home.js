@@ -8,23 +8,10 @@ const Home = () => {
     return (
         <div>
             <GlobalStyle />
-            <Liste></Liste> 
+            <Header />
+            <Liste /> 
         </div>
     );
 };
 
 export default Home;
-
-
-const ContainAll = styled.div`
-    min-height:100vh;
-    height:100%;
-    background-repeat: no-repeat;
-    background-size:cover;
-`
-
-const ContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
