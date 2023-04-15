@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import allTheActions from "../../actions";
 import styled from "styled-components";
 import ListeRow from "../listeRow";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import ReactPaginate from "react-paginate";
 
 const Liste = () => {
@@ -16,13 +16,26 @@ const Liste = () => {
   const itemsPerPage = 50;
   const numberOfRecordsVistited = page * itemsPerPage;
   const totalPages = Math.ceil(apiResponse.length / itemsPerPage);
-  const changePage = ({ selected }) => {
+
+  const handlePageChange = ({ selected }) => {
     setPage(selected);
   };
 
-  const [isClicked, setIsClicked] = useState(false);
-  const handleClick = () => {
-    setIsClicked(!isClicked);
+  const pageVariants = {
+    hidden: {
+      opacity: 0,
+      x: -300,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+    },
+  };
+
+  const pageTransition = {
+    type: "tween",
+    duration: 0.5,
+    ease: "easeInOut",
   };
 
   const [searchInput, setSearchInput] = useState("");
@@ -43,51 +56,52 @@ const Liste = () => {
         onChange={handleChange}
         value={searchInput}
       />
+      
+      <MyPaginate
+        pageCount={totalPages}
+        onPageChange={handlePageChange}
+      />
+
+      <motion.div
+        key={page}
+        variants={pageVariants}
+        initial="hidden"
+        animate="visible"
+        transition={pageTransition}
+      >
+        {apiResponse
+          .filter((item) =>
+            item.name.toLowerCase().includes(searchInput.toLowerCase())
+          )
+          .slice(
+            numberOfRecordsVistited,
+            numberOfRecordsVistited + itemsPerPage
+          )
+          .map((item) => {
+            return (
+              <>
+                <motion.div
+                  whileInView={{ x: 0 }}
+                  initial={{ x: -300 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  <ListeRow
+                    name={item.name}
+                    face={item.face}
+                    rarity={item.rarity}
+                    id={item.id}
+                  ></ListeRow>
+                </motion.div>
+              </>
+            );
+          })}
+      </motion.div>
 
       <MyPaginate
         pageCount={totalPages}
-        onPageChange={changePage}
-        onClick={handleClick}
+        onPageChange={handlePageChange}
       />
 
-      <AnimatePresence>
-        {isClicked && (
-          <motion.div
-            whileInView={{ x: 0 }}
-            initial={{ x: -300 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {apiResponse
-              .filter((item) =>
-                item.name.toLowerCase().includes(searchInput.toLowerCase())
-              )
-              .slice(
-                numberOfRecordsVistited,
-                numberOfRecordsVistited + itemsPerPage
-              )
-              .map((item) => {
-                return (
-                  <>
-                    <motion.div
-                      whileInView={{ x: 0 }}
-                      initial={{ x: -300 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                    >
-                      <ListeRow
-                        name={item.name}
-                        face={item.face}
-                        rarity={item.rarity}
-                        id={item.id}
-                      ></ListeRow>
-                    </motion.div>
-                  </>
-                );
-              })}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <MyPaginate pageCount={totalPages} onPageChange={changePage} />
     </ContainAll>
   );
 };
